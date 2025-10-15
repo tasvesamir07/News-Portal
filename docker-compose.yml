@@ -1,0 +1,43 @@
+# /bangla-news-portal/docker-compose.yml
+
+version: '3.8'
+
+services:
+  # PostgreSQL Database Service
+  db:
+    image: postgres:13-alpine
+    container_name: bangla_news_db_container
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: bangla_news_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # Backend Server Service
+  server:
+    build: ./server
+    container_name: bangla_news_server_container
+    restart: always
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./.env # This tells Docker Compose to load variables from the .env file
+    depends_on:
+      - db # This makes sure the database starts before the server
+
+  # Frontend Client Service
+  client:
+    build: ./client
+    container_name: bangla_news_client_container
+    restart: always
+    ports:
+      - "3000:80" # Map host port 3000 to container port 80
+    depends_on:
+      - server # The client depends on the server
+
+volumes:
+  pgdata: # This defines a persistent volume for the database
