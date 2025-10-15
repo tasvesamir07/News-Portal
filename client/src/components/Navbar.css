@@ -1,0 +1,59 @@
+.navbar-header {
+  background-color: var(--white-color);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  padding: 0 2rem;
+  
+  /* --- NEW: Makes the navbar sticky --- */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  /* ------------------------------------ */
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--dark-text);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--secondary-text);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s ease-in-out;
+  padding-bottom: 5px; /* Add some space for the underline */
+}
+
+.nav-links a:hover {
+  color: var(--primary-blue);
+}
+
+/* --- NEW: Styles the active NavLink --- */
+.nav-links a.active {
+  color: var(--primary-blue);
+  border-bottom: 3px solid var(--primary-blue);
+}
+/* -------------------------------------- */
+
+.nav-time {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--secondary-text);
+}

@@ -1,0 +1,59 @@
+.news-card {
+  background: var(--white-color);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer; /* Makes it look clickable */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.news-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.news-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.news-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: var(--dark-text);
+  line-height: 1.4;
+}
+
+/* New style for the summary */
+.news-summary {
+  font-size: 0.9rem;
+  color: var(--secondary-text);
+  flex-grow: 1;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.read-more-btn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--primary-blue);
+  color: var(--white-color);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 5px;
+  margin-top: auto; /* Pushes button to the bottom */
+}
