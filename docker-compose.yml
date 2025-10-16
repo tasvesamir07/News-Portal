@@ -3,7 +3,6 @@
 version: '3.8'
 
 services:
-  # PostgreSQL Database Service
   db:
     image: postgres:13-alpine
     container_name: bangla_news_db_container
@@ -16,6 +15,8 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+      # --- ADD THIS LINE ---
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   # Backend Server Service
   server:

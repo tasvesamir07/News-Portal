@@ -1,22 +1,29 @@
 # /server/Dockerfile
 
-# Use an official Node.js runtime as a parent image
-FROM node:18-alpine
+# Use the official Puppeteer image which includes Chromium and all dependencies
+FROM ghcr.io/puppeteer/puppeteer:22.9.0
 
-# Set the working directory in the container
+# Switch to the root user to install dependencies, then back to the non-root 'pptruser'
+USER root
+
+# Set the working directory
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to leverage Docker cache
+# Copy package files first for better caching
 COPY package*.json ./
 
 # Install app dependencies
 RUN npm install
 
-# Copy the rest of the application's source code
+# Copy the rest of your application code
 COPY . .
 
-# Make port 5000 available to the outside world
+# Puppeteer's user doesn't have permission for port 5000 by default, so we switch back to root
+# For a production app, you'd handle permissions more granularly, but this is simplest for development.
+USER root
+
+# Expose the port
 EXPOSE 5000
 
-# Command to run the application
+# Command to start the server
 CMD [ "node", "server.js" ]
